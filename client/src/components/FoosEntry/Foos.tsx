@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 // eslint-disable-next-line import/no-unresolved
 import { graphql, PreloadedQuery, usePreloadedQuery } from 'react-relay/hooks';
-import Link from '../../routing/Link';
 import { FoosQuery } from './__generated__/FoosQuery.graphql';
+import { FooCounts, /* FooList, FooListItem, */ FooListView } from '../ui-lib';
+import FooList from '../FooList/FooList';
 
-const Foos: React.FC<{ queries: { foosQuery: PreloadedQuery<FoosQuery> } }> = ({ queries: { foosQuery } }) => {
+type Props = { queries: { foosQuery: PreloadedQuery<FoosQuery> } };
+
+const Foos = ({ queries: { foosQuery } }: Props): ReactElement => {
   const data = usePreloadedQuery<FoosQuery>(
     graphql`
       query FoosQuery {
@@ -12,6 +15,8 @@ const Foos: React.FC<{ queries: { foosQuery: PreloadedQuery<FoosQuery> } }> = ({
           uuid
           text
         }
+        # ...FooCounts_totalCount
+        ...FooList_foos
       }
     `,
     foosQuery,
@@ -21,14 +26,20 @@ const Foos: React.FC<{ queries: { foosQuery: PreloadedQuery<FoosQuery> } }> = ({
 
   return (
     <div>
-      <ul>
-        {foos.map((foo) => (
-          <li key={foo.uuid}>
-            <Link to={`/foo/${foo.uuid}`}>{foo.text}</Link>
-          </li>
-        ))}
-      </ul>
+      <FooListView counts={<FooCounts count={foos.length} />} list={<FooList foos={data} />} />
     </div>
+    // <div>
+    //   <FooListView
+    //     counts={<FooCounts count={foos.length} />}
+    //     list={
+    //       <FooList
+    //         items={foos.map((foo) => (
+    //           <FooListItem key={foo.uuid} id={`/foo/${foo.uuid}`} text={foo.text} />
+    //         ))}
+    //       />
+    //     }
+    //   />
+    // </div>
   );
 };
 

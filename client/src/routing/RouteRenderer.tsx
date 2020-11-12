@@ -1,3 +1,4 @@
+import { css } from '@emotion/core';
 import React, { ReactElement, Suspense } from 'react';
 import { EntryPointContainer } from 'react-relay/hooks';
 import ErrorBoundary from '../components/ErrorBoundary';
@@ -8,7 +9,12 @@ import useRouteEntryTransition from './useRouteEntryTransition';
  * that entry.
  */
 
-const RouterRenderer = (): ReactElement => {
+type Props = {
+  // eslint-disable-next-line react/require-default-props
+  className?: string;
+};
+
+const RouterRenderer = ({ className }: Props): ReactElement => {
   // const router = useContext(RoutingContext);
 
   // const routeEntry = router.get();
@@ -37,9 +43,34 @@ const RouterRenderer = (): ReactElement => {
 
   return (
     <ErrorBoundary renderError={() => 'Error'}>
-      <Suspense fallback="Loading fallback...">
+      <Suspense fallback="Don't show this">
         {/* Indicate to the user that a transition is pending, even while showing the previous UI */}
-        {isPending ? <div className="RouteRenderer-pending">Loading pending...</div> : null}
+        {isPending ? (
+          <div
+            className={className}
+            css={css`
+              position: absolute;
+              z-index: 1;
+              background-color: #fff;
+
+              /**
+               * Delay the pending indicator in case the transition is very fast:
+               * https://reactjs.org/docs/concurrent-mode-patterns.html#delaying-a-pending-indicator
+               */
+
+              animation: 0s linear 0.5s forwards makeVisible;
+              visibility: hidden;
+
+              @keyframes makeVisible {
+                to {
+                  visibility: visible;
+                }
+              }
+            `}
+          >
+            Loading pending...
+          </div>
+        ) : null}
         {routeComponent}
       </Suspense>
     </ErrorBoundary>

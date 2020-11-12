@@ -82,6 +82,7 @@
     "core-js": "^3.6.5",
     "dotenv": "^8.2.0",
     "dotenv-expand": "^5.1.0",
+    "emotion-theming": "^10.0.0",
     "history": "^5.0.0",
     "react": "0.0.0-experimental-4ead6b530",
     "react-dom": "0.0.0-experimental-4ead6b530",

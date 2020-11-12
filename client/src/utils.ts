@@ -8,4 +8,8 @@ const toGlobalId = (type: string, id: string): string => {
   return btoa([type, id].join(':'));
 };
 
-export { nullThrows, toGlobalId };
+const breakpoints = [576, 768, 992, 1200];
+
+const mq = breakpoints.map((bp) => `@media (min-width: ${bp}px)`);
+
+export { mq, nullThrows, toGlobalId };

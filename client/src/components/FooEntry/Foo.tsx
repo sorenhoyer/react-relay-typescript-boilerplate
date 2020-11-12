@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 // eslint-disable-next-line import/no-unresolved
 import { graphql, PreloadedQuery, usePreloadedQuery } from 'react-relay/hooks';
 import { FooQuery } from './__generated__/FooQuery.graphql';
 
-const Foo: React.FC<{ queries: { fooQuery: PreloadedQuery<FooQuery> } }> = ({ queries: { fooQuery } }) => {
+type Props = { queries: { fooQuery: PreloadedQuery<FooQuery> } };
+
+const Foo = ({ queries: { fooQuery } }: Props): ReactElement => {
   const data = usePreloadedQuery<FooQuery>(
     graphql`
       query FooQuery($id: ID!) {
