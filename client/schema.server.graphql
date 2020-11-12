@@ -1,0 +1,34 @@
+"""Exposes a URL that specifies the behaviour of this scalar."""
+directive @specifiedBy(
+  """The URL that specifies the behaviour of this scalar."""
+  url: String!
+) on SCALAR
+
+type Foo implements Node {
+  id: ID!
+  uuid: String!
+  text: String!
+}
+
+"""An object with an ID"""
+interface Node {
+  """The id of the object."""
+  id: ID!
+}
+
+type Query {
+  """Fetches an object given its ID"""
+  node(
+    """The ID of an object"""
+    id: ID!
+  ): Node
+  me: User!
+  foos: [Foo]
+}
+
+type User implements Node {
+  id: ID!
+  uuid: String!
+  firstName: String!
+}
+

@@ -1,0 +1,13 @@
+{
+  "src/**/*.{js,jsx,ts,tsx}": [
+    "eslint --fix",
+    "git add"
+  ],
+  "*.{md,json}": [
+    "prettier --write",
+    "git add"
+  ],
+  "package-lock.json": [
+    "git rm --cached"
+  ]
+}

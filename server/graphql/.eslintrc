@@ -1,0 +1,15 @@
+{
+  "extends": [
+    "@sorenhoyer/eslint-config-base"
+  ],
+  "rules": {
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "ts": "never",
+        "js": "never"
+      }
+    ]
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "extends": [
+    "@sorenhoyer/eslint-config-react",
+    "@sorenhoyer/eslint-config-relay"
+  ],
+  "rules": {
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "ts": "never",
+        "tsx": "never",
+        "js": "never",
+        "jsx": "never"
+      }
+    ]
+  }
+}
