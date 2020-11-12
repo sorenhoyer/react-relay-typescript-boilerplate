@@ -23,9 +23,10 @@ const FooList = (props: Props): ReactElement => {
     // eslint-disable-next-line react/destructuring-assignment
     props.foos,
   );
+
   return (
     <FL
-      items={data.foos.map((foo) => (
+      items={data.foos?.map((foo) => (
         <FooListItem key={foo.uuid} foo={foo} />
       ))}
     />
