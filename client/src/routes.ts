@@ -6,8 +6,6 @@ import { Route } from './types';
 const routes: Route[] = [
   {
     entryPoint: RootEntryPoint,
-    path: '/',
-    exact: false,
     routes: [
       {
         path: '/',
