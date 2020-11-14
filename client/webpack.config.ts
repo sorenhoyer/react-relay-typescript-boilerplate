@@ -124,8 +124,11 @@ const config: Configuration = {
     contentBase: outputDir,
     port: REACT_RELAY_TYPESCRIPT_BOILERPLATE_PORT ? +REACT_RELAY_TYPESCRIPT_BOILERPLATE_PORT : 3000,
     historyApiFallback: true,
+    host: '0.0.0.0',
+    hot: true,
   },
   plugins: [
+    isDevelopment && new ReactRefreshWebpackPlugin(),
     new DefinePlugin(env.stringified),
     // new HtmlWebpackPlugin({
     //   template: 'index.html',
@@ -152,7 +155,5 @@ const config: Configuration = {
     new ForkTsCheckerWebpackPlugin(),
   ],
 };
-
-if (isDevelopment) config.plugins?.push(new HotModuleReplacementPlugin(), new ReactRefreshWebpackPlugin());
 
 export default config;
