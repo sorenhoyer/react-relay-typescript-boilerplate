@@ -1,5 +1,5 @@
 import cors from 'cors';
-import express from 'express';
+import express, { Request, Response } from 'express';
 import { graphqlHTTP } from 'express-graphql';
 import schema from './schema';
 
@@ -11,12 +11,18 @@ app.use((req, res, next) => {
   next();
 });
 
+type Context = {
+  startTime: number;
+  req: Request;
+  res: Response;
+};
+
 app.use(
   '/graphql',
   cors(),
-  graphqlHTTP(() => {
+  graphqlHTTP((req, res) => {
     return {
-      context: { startTime: Date.now() },
+      context: { startTime: Date.now(), req, res } as Context,
       customFormatErrorFn: (error) => ({
         message: error.message,
         locations: error.locations,
@@ -32,7 +38,7 @@ app.use(
       }) => {
         return {
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          runTime: Date.now() - (context as any).startTime,
+          runTime: Date.now() - (context as Context).startTime,
         };
       },
       graphiql: true,

@@ -8,9 +8,13 @@ type EmptyObject = NoElements<Record<string, never>>;
 type Route = {
   path?: string;
   exact?: boolean;
-  // eslint-disable-next-line @typescript-eslint/ban-types
-  entryPoint: EntryPoint<{}, {}>;
+  entryPoint: EntryPoint<any, any>;
   routes: Route[];
 };
 
-export type { EmptyObject, NoElements, Route };
+// https://github.com/typescript-cheatsheets/react#consuming-props-of-a-component-with-defaultprops
+type ComponentProps<T> = T extends React.ComponentType<infer P> | React.Component<infer P>
+  ? JSX.LibraryManagedAttributes<T, P>
+  : never;
+
+export type { ComponentProps, EmptyObject, NoElements, Route };

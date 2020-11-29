@@ -1,12 +1,12 @@
-import React, { Suspense } from 'react';
+import React, { ReactElement, ReactNode, Suspense } from 'react';
 // eslint-disable-next-line import/no-unresolved
 import { graphql, PreloadedQuery, usePreloadedQuery } from 'react-relay/hooks';
+import type { ComponentProps } from '../../types';
 import { RootQuery } from './__generated__/RootQuery.graphql';
 
-const Root: React.FC<{ queries: { rootQuery: PreloadedQuery<RootQuery> }; props: { children } }> = ({
-  queries: { rootQuery },
-  props: { children },
-}) => {
+export type Props = { queries: { rootQuery: PreloadedQuery<RootQuery> }; props: { children: ReactNode } };
+
+const Root = ({ queries: { rootQuery }, props: { children } }: Props): ReactElement => {
   const data = usePreloadedQuery(
     graphql`
       query RootQuery {

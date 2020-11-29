@@ -1,8 +1,9 @@
 // eslint-disable-next-line camelcase
 import { unstable_useTransition, useContext, useEffect, useState } from 'react';
 import RoutingContext from './RoutingContext';
+import { RouteEntry } from './types';
 
-const useRouteEntryTransition = (): { routeEntry: any; isPending: boolean } => {
+const useRouteEntryTransition = (): { routeEntry: RouteEntry; isPending: boolean } => {
   const router = useContext(RoutingContext);
   // Improve the route transition UX by delaying transitions: show the previous route entry
   // for a brief period while the next route is being prepared. See
@@ -17,15 +18,16 @@ const useRouteEntryTransition = (): { routeEntry: any; isPending: boolean } => {
   useEffect(() => {
     // Check if the route has changed between the last render and commit:
     const currentEntry = router.get();
+
     if (currentEntry !== routeEntry) {
-      // if there was a concurrent modification, rerender and exit
+      // If there was a concurrent modification, rerender and exit
       setRouteEntry(currentEntry);
       return;
     }
 
     // If there *wasn't* a concurrent change to the route, then the UI
     // is current: subscribe for subsequent route updates
-    const dispose = router.subscribe((nextEntry) => {
+    const dispose = router.subscribe((nextEntry: any) => {
       // startTransition() delays the effect of the setRouteEntry (setState) call
       // for a brief period, continuing to show the old state while the new
       // state (route) is prepared.
@@ -33,6 +35,7 @@ const useRouteEntryTransition = (): { routeEntry: any; isPending: boolean } => {
         setRouteEntry(nextEntry);
       });
     });
+
     return () => dispose();
 
     // Note: this hook updates routeEntry manually; we exclude that variable

@@ -94,9 +94,8 @@ const config: Configuration = {
     publicPath: '/',
   },
   resolve: {
-    // aliasFields: ['browser'],
     mainFields: ['browser', 'module', 'js:next', 'main'],
-    extensions: [/* '.mjs',  */ '.ts', '.tsx', '.js', '.json'],
+    extensions: ['.ts', '.tsx', '.js', '.json'],
   },
   module: {
     rules: [
@@ -112,11 +111,6 @@ const config: Configuration = {
           },
         ],
       },
-      // {
-      //   test: /\.mjs$/,
-      //   include: /node_modules/,
-      //   type: 'javascript/auto',
-      // },
     ],
   },
   devServer: {
@@ -152,7 +146,14 @@ const config: Configuration = {
       schema: path.resolve(__dirname, './schema.server.graphql'), // or schema.json
       src: path.resolve(__dirname, './src'),
     }),
-    new ForkTsCheckerWebpackPlugin(),
+    new ForkTsCheckerWebpackPlugin({
+      typescript: {
+        diagnosticOptions: {
+          semantic: true,
+          syntactic: true,
+        },
+      },
+    }),
   ],
 };
 

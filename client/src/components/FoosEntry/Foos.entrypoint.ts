@@ -1,20 +1,16 @@
-// eslint-disable-next-line import/no-named-as-default
 import createEntryPoint from '../../createEntryPoint';
 // eslint-disable-next-line import/no-named-as-default
 import JSResource from '../../JSResource';
-// eslint-disable-next-line import/no-named-as-default
-import FoosQuery from './__generated__/FoosQuery.graphql';
+import { EmptyObject } from '../../types';
+import FoosQueryConcreteRequest from './__generated__/FoosQuery.graphql';
 
-// eslint-disable-next-line @typescript-eslint/ban-types
-export default createEntryPoint<{}>({
-  // @ts-ignore
-  root: JSResource('Foos', async () => (await import('./Foos')).default),
-  // @ts-ignore
-  getPreloadProps(params) {
+export default createEntryPoint<EmptyObject>({
+  root: JSResource<any>('Foos', async () => (await import('./Foos')).default),
+  getPreloadProps() {
     return {
       queries: {
         foosQuery: {
-          parameters: FoosQuery,
+          parameters: FoosQueryConcreteRequest,
           variables: {},
         },
       },

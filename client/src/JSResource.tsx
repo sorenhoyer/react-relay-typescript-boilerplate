@@ -20,14 +20,17 @@ class JSResourceImpl<T> {
 
   load() {
     let promise = this._promise;
+
     if (promise == null) {
       promise = this._loader().then(
         (result) => {
           this._result = result;
+
           return result;
         },
         (error) => {
           this._error = error;
+
           throw error;
         },
       );
@@ -67,15 +70,19 @@ class JSResourceImpl<T> {
 const resourceMap: Map<string | number, JSResourceImpl<unknown>> = new Map();
 
 export type JSResource<T> = {
+  getModuleId(): string;
   getModuleIfRequired(): T | null;
   load(): Promise<T>;
 };
 
 export default function JSResource<T>(moduleId: string | number, loader: () => Promise<T>): JSResource<T> {
   let resource = resourceMap.get(moduleId);
+
   if (resource == null) {
     resource = new JSResourceImpl(moduleId, loader);
+
     resourceMap.set(moduleId, resource);
   }
+
   return resource as JSResource<T>;
 }

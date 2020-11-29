@@ -16,13 +16,12 @@ const fetchRelay: FetchFunction = async (params, variables) => {
 
   const json = await response.json();
 
-  if (Array.isArray(json.errors)) {
+  if (Array.isArray(json.errors))
     throw new Error(
       `Error fetching GraphQL query '${params.name}' with variables '${JSON.stringify(variables)}': ${JSON.stringify(
         json.errors,
       )}`,
     );
-  }
 
   return json;
 };
@@ -30,10 +29,6 @@ const fetchRelay: FetchFunction = async (params, variables) => {
 const environment = new Environment({
   network: Network.create(fetchRelay),
   store: new Store(new RecordSource(), {
-    // This property tells Relay to not immediately clear its cache when the user
-    // navigates around the app. Relay will hold onto the specified number of
-    // query results, allowing the user to return to recently visited pages
-    // and reusing cached data if its available/fresh.
     gcReleaseBufferSize: 10,
   }),
 });

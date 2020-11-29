@@ -1,8 +1,9 @@
 // eslint-disable-next-line import/no-unresolved
 import type { EntryPoint } from 'react-relay/lib/relay-experimental/EntryPointTypes';
+import { EmptyObject } from './types';
 
 // eslint-disable-next-line @typescript-eslint/ban-types
-const createEntryPoint = <P>(config: EntryPoint<P, {}>): EntryPoint<P, {}> => {
+const createEntryPoint = <P>(config: EntryPoint<any, P>): EntryPoint<any, P> => {
   return {
     root: config.root,
     getPreloadProps: config.getPreloadProps,

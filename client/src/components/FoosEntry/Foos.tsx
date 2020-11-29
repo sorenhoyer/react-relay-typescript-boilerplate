@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 // eslint-disable-next-line import/no-unresolved
 import { graphql, PreloadedQuery, usePreloadedQuery } from 'react-relay/hooks';
 import Link from '../../routing/Link';
+import { ComponentProps } from '../../types';
 import { FoosQuery } from './__generated__/FoosQuery.graphql';
 
-const Foos: React.FC<{ queries: { foosQuery: PreloadedQuery<FoosQuery> } }> = ({ queries: { foosQuery } }) => {
+type Props = { queries: { foosQuery: PreloadedQuery<FoosQuery> } };
+
+const Foos = ({ queries: { foosQuery } }: ComponentProps<Props>): ReactElement => {
   const data = usePreloadedQuery<FoosQuery>(
     graphql`
       query FoosQuery {
@@ -22,9 +25,9 @@ const Foos: React.FC<{ queries: { foosQuery: PreloadedQuery<FoosQuery> } }> = ({
   return (
     <div>
       <ul>
-        {foos.map((foo) => (
-          <li key={foo.uuid}>
-            <Link to={`/foo/${foo.uuid}`}>{foo.text}</Link>
+        {foos?.map((foo) => (
+          <li key={foo?.uuid}>
+            <Link to={`/foo/${foo?.uuid}`}>{foo?.text}</Link>
           </li>
         ))}
       </ul>

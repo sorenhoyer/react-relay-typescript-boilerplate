@@ -1,29 +1,34 @@
 /* eslint-disable react/destructuring-assignment */
-import React from 'react';
+import React, { ErrorInfo, ReactNode } from 'react';
 
-export default class ErrorBoundary extends React.Component<any, any> {
-  constructor(props) {
+type Props = {
+  children: ReactNode;
+};
+
+type State = {
+  hasError: boolean;
+};
+
+export default class ErrorBoundary extends React.Component<Props, State> {
+  constructor(props: Props) {
     super(props);
-    this.state = { error: null };
+    // eslint-disable-next-line react/no-unused-state
+    this.state = { hasError: false };
   }
 
-  static getDerivedStateFromError(error) {
-    return {
-      error,
-    };
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  static getDerivedStateFromError(error: unknown): State {
+    return { hasError: true };
   }
 
-  render() {
-    if (this.state.error != null) {
-      return (
-        <div>
-          <div>Error: {this.state.error.message}</div>
-          <div>
-            <pre>{JSON.stringify(this.state.error.source, null, 2)}</pre>
-          </div>
-        </div>
-      );
-    }
+  componentDidCatch(error: unknown, errorInfo: ErrorInfo): void {
+    // eslint-disable-next-line no-console
+    console.log(error, errorInfo);
+  }
+
+  render(): ReactNode {
+    if (this.state.hasError) return <h1>Something went wrong.</h1>;
+
     return this.props.children;
   }
 }

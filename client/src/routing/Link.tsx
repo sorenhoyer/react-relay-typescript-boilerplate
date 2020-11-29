@@ -6,10 +6,6 @@ type Props = {
   to: string;
 };
 
-/**
- * An alternative to react-router's Link component that works with
- * our custom RoutingContext.
- */
 const Link = ({ children, to }: Props): ReactElement => {
   const router = useContext(RoutingContext);
 

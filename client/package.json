@@ -1,22 +1,45 @@
 {
   "name": "react-relay-typescript-boilerplate",
+  "description": "A boilerplate for setting up React, Relay and TypeScript",
   "version": "0.0.1",
-  "license": "MIT",
-  "engines": {
-    "node": ">=12"
+  "author": "Søren Høyer <sorenhoyer84@gmail.com>",
+  "babel": {
+    "presets": [
+      [
+        "@babel/preset-env",
+        {
+          "useBuiltIns": "usage",
+          "corejs": 3,
+          "targets": "> 0.25%, not dead"
+        }
+      ],
+      [
+        "@babel/typescript",
+        {
+          "allowNamespaces": true,
+          "onlyRemoveTypeImports": true
+        }
+      ],
+      "@babel/react",
+      "@emotion/babel-preset-css-prop"
+    ],
+    "plugins": [
+      "relay",
+      "@babel/proposal-class-properties",
+      "@babel/proposal-object-rest-spread"
+    ]
   },
-  "scripts": {
-    "lint": "eslint src/**/*.{js,jsx,ts,tsx}",
-    "lint-fix": "eslint src/**/*.{js,jsx,ts,tsx} --fix",
-    "start": "cross-env NODE_ENV=\"development\" TS_NODE_PROJECT=\"tsconfig-for-webpack-config.json\" webpack serve --color --progress --profile",
-    "type-check": "tsc --noEmit",
-    "type-check:watch": "npm run type-check -- --watch",
-    "update-schema": "get-graphql-schema http://localhost:4000/graphql > schema.server.graphql"
-  },
-  "resolutions": {
-    "react": "0.0.0-experimental-4ead6b530",
-    "react-dom": "0.0.0-experimental-4ead6b530",
-    "react-relay": "0.0.0-experimental-183bdd28"
+  "dependencies": {
+    "@emotion/core": "^10.0.35",
+    "core-js": "^3.6.5",
+    "dotenv": "^8.2.0",
+    "dotenv-expand": "^5.1.0",
+    "history": "^5.0.0",
+    "react": "^0.0.0-experimental-4ead6b530",
+    "react-dom": "^0.0.0-experimental-4ead6b530",
+    "react-relay": "^0.0.0-experimental-c818bac3",
+    "react-router-config": "^5.1.1",
+    "react-router-dom": "^5.2.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.8.3",
@@ -46,7 +69,7 @@
     "@typescript-eslint/eslint-plugin": "^4.4.0",
     "@typescript-eslint/parser": "^4.4.0",
     "babel-loader": "^8.1.0",
-    "babel-plugin-relay": "^10.0.1",
+    "babel-plugin-relay": "^10.1.0",
     "cross-env": "^7.0.2",
     "eslint": "^7.10.0",
     "eslint-config-airbnb": "^18.2.0",
@@ -65,10 +88,10 @@
     "lint-staged": "^10.4.0",
     "prettier": "^2.1.2",
     "react-refresh": "^0.8.3",
-    "relay-compiler": "^10.0.1",
-    "relay-compiler-language-typescript": "^13.0.1",
+    "relay-compiler": "^10.1.0",
+    "relay-compiler-language-typescript": "^13.0.2",
     "relay-compiler-webpack-plugin": "^8.1.0",
-    "relay-config": "^10.0.1",
+    "relay-config": "^10.1.0",
     "ts-node": "^9.0.0",
     "tsconfig-paths": "^3.9.0",
     "type-fest": "^0.17.0",
@@ -77,17 +100,72 @@
     "webpack-cli": "^4.0.0",
     "webpack-dev-server": "^3.11.0"
   },
-  "dependencies": {
-    "@emotion/core": "^10.0.35",
-    "core-js": "^3.6.5",
-    "dotenv": "^8.2.0",
-    "dotenv-expand": "^5.1.0",
-    "history": "^5.0.0",
-    "react": "0.0.0-experimental-4ead6b530",
-    "react-dom": "0.0.0-experimental-4ead6b530",
-    "react-relay": "0.0.0-experimental-183bdd28",
-    "react-router-config": "^5.1.1",
-    "react-router-dom": "^5.2.0",
-    "regenerator-runtime": "^0.13.7"
+  "engines": {
+    "node": ">=12"
+  },
+  "eslintConfig": {
+    "extends": [
+      "@sorenhoyer/eslint-config-react",
+      "@sorenhoyer/eslint-config-relay"
+    ],
+    "ignorePatterns": [
+      ".vscode",
+      "coverage",
+      "dist",
+      "node_modules",
+      "__generated__"
+    ],
+    "rules": {
+      "import/extensions": [
+        "error",
+        "ignorePackages",
+        {
+          "ts": "never",
+          "tsx": "never",
+          "js": "never",
+          "jsx": "never"
+        }
+      ]
+    }
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn type-check && lint-staged"
+    }
+  },
+  "keywords": [
+    "boilerplate",
+    "react",
+    "relay",
+    "typescript"
+  ],
+  "license": "MIT",
+  "lint-staged": {
+    "src/**/*.{js,jsx,ts,tsx}": [
+      "eslint --fix",
+      "git add"
+    ],
+    "*.{md,json}": [
+      "prettier --write",
+      "git add"
+    ],
+    "package-lock.json": [
+      "git rm --cached"
+    ]
+  },
+  "prettier": "@sorenhoyer/prettier-config",
+  "repository": "https://github.com/sorenhoyer/react-relay-typescript-boilerplate.git",
+  "resolutions": {
+    "react": "^0.0.0-experimental-4ead6b530",
+    "react-dom": "^0.0.0-experimental-4ead6b530",
+    "react-relay": "^0.0.0-experimental-c818bac3"
+  },
+  "scripts": {
+    "lint": "eslint src/**/*.{js,jsx,ts,tsx}",
+    "lint-fix": "eslint src/**/*.{js,jsx,ts,tsx} --fix",
+    "start": "cross-env NODE_ENV=\"development\" TS_NODE_PROJECT=\"tsconfig-for-webpack-config.json\" webpack serve --color --progress --profile",
+    "type-check": "tsc --noEmit",
+    "type-check:watch": "npm run type-check -- --watch",
+    "update-schema": "get-graphql-schema http://localhost:4000/graphql > schema.server.graphql"
   }
 }

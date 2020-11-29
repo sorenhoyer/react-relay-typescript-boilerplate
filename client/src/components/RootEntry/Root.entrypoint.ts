@@ -1,19 +1,16 @@
 import createEntryPoint from '../../createEntryPoint';
 // eslint-disable-next-line import/no-named-as-default
 import JSResource from '../../JSResource';
-// eslint-disable-next-line import/no-named-as-default
-import RootQuery from './__generated__/RootQuery.graphql';
+import { EmptyObject } from '../../types';
+import RootQueryConcreteRequest from './__generated__/RootQuery.graphql';
 
-// eslint-disable-next-line @typescript-eslint/ban-types
-export default createEntryPoint<{}>({
-  // @ts-ignore
-  root: JSResource('Root', async () => (await import('./Root')).default),
-  // @ts-ignore
-  getPreloadProps(params) {
+export default createEntryPoint<EmptyObject>({
+  root: JSResource<any>('Root', async () => (await import('./Root')).default),
+  getPreloadProps() {
     return {
       queries: {
         rootQuery: {
-          parameters: RootQuery,
+          parameters: RootQueryConcreteRequest,
           variables: {},
         },
       },
