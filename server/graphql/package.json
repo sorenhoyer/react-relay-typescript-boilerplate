@@ -35,7 +35,47 @@
     "ts-node": "^9.0.0",
     "typescript": "^4.0.3"
   },
+  "eslintConfig": {
+    "extends": [
+      "@sorenhoyer/eslint-config-base"
+    ],
+    "rules": {
+      "import/extensions": [
+        "error",
+        "ignorePackages",
+        {
+          "ts": "never",
+          "js": "never"
+        }
+      ]
+    },
+    "ignorePatterns": [
+      ".vscode",
+      "coverage",
+      "dist",
+      "node_modules"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn type-check && lint-staged"
+    }
+  },
   "license": "ISC",
+  "lint-staged": {
+    "*.{js,ts}": [
+      "eslint --fix",
+      "git add"
+    ],
+    "*.{md,json}": [
+      "prettier --write",
+      "git add"
+    ],
+    "package-lock.json": [
+      "git rm --cached"
+    ]
+  },
+  "prettier": "@sorenhoyer/prettier-config",
   "scripts": {
     "build": "yarn tsc && node dist/index.js",
     "create-env": "node scripts/create-env.js",
