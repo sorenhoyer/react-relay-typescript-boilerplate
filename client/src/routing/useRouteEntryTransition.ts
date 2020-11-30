@@ -5,6 +5,7 @@ import { RouteEntry } from './types';
 
 const useRouteEntryTransition = (): { routeEntry: RouteEntry; isPending: boolean } => {
   const router = useContext(RoutingContext);
+
   // Improve the route transition UX by delaying transitions: show the previous route entry
   // for a brief period while the next route is being prepared. See
   // https://reactjs.org/docs/concurrent-mode-patterns.html#transitions
@@ -27,7 +28,7 @@ const useRouteEntryTransition = (): { routeEntry: RouteEntry; isPending: boolean
 
     // If there *wasn't* a concurrent change to the route, then the UI
     // is current: subscribe for subsequent route updates
-    const dispose = router.subscribe((nextEntry: any) => {
+    const dispose = router.subscribe((nextEntry: RouteEntry) => {
       // startTransition() delays the effect of the setRouteEntry (setState) call
       // for a brief period, continuing to show the old state while the new
       // state (route) is prepared.

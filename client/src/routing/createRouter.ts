@@ -4,6 +4,7 @@ import { matchRoutes, MatchedRoute } from 'react-router-config'; // './react-rou
 import RelayEnvironment from '../RelayEnvironment';
 import { EmptyObject, Route } from '../types';
 import { Props as Context } from './RoutingContext';
+import { RouteEntry } from './types';
 
 type Router = {
   cleanup: () => void;
@@ -55,7 +56,7 @@ const createRouter = (routes: Route[], options?: BrowserHistoryOptions): Router 
 
   const initialEntries = prepareMatches(initialMatches);
 
-  let currentEntry = {
+  let currentEntry: RouteEntry = {
     location: history.location,
     entries: initialEntries,
   };
@@ -73,7 +74,7 @@ const createRouter = (routes: Route[], options?: BrowserHistoryOptions): Router 
 
     const entries = prepareMatches(matches);
 
-    const nextEntry = {
+    const nextEntry: RouteEntry = {
       location,
       entries,
     };
@@ -90,7 +91,7 @@ const createRouter = (routes: Route[], options?: BrowserHistoryOptions): Router 
       return currentEntry;
     },
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    subscribe(cb: (nextEntry: any) => void) {
+    subscribe(cb: (nextEntry: RouteEntry) => void) {
       // eslint-disable-next-line no-plusplus
       const id = nextId++;
 

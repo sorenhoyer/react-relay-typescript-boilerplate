@@ -14,7 +14,7 @@ const RouterRenderer = (): ReactElement => {
 
   // const routeEntry = router.get();
 
-  // Optional: Improve the route transition UX by delaying transitions: show the previous route entry
+  // Improve the route transition UX by delaying transitions: show the previous route entry
   // for a brief period while the next route is being prepared. See
   // https://reactjs.org/docs/concurrent-mode-patterns.html#transitions
   const { routeEntry, isPending } = useRouteEntryTransition();
