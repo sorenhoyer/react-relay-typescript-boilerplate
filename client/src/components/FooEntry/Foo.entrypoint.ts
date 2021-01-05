@@ -1,16 +1,15 @@
 import createEntryPoint from '../../createEntryPoint';
-// eslint-disable-next-line import/no-named-as-default
-import JSResource from '../../JSResource';
-import FooQueryConcreteRequest from './__generated__/FooQuery.graphql';
+import createJSResource from '../../createJSResource';
+import fooQueryConcreteRequest from './__generated__/FooQuery.graphql';
 import { toGlobalId } from '../../utils';
 
 export default createEntryPoint<{ id: string }>({
-  root: JSResource<any>('Foo', async () => (await import('./Foo')).default),
+  root: createJSResource('Foo', () => import('./Foo')),
   getPreloadProps(params) {
     return {
       queries: {
         fooQuery: {
-          parameters: FooQueryConcreteRequest,
+          parameters: fooQueryConcreteRequest,
           variables: {
             id: toGlobalId('Foo', params.id),
           },
