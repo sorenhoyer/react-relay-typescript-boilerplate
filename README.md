@@ -1,8 +1,8 @@
-# React Relay Boilerplate
+# React Relay TypeScript Boilerplate
 
 ## What is this?
 
-A boilerplate for setting React, Relay, TypeScript and Webpack with Fast Refresh and Emotion
+A boilerplate for setting up a React application with Relay, TypeScript and Webpack
 
 ## How to run it?
 
