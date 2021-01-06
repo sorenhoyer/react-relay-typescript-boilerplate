@@ -1,11 +1,11 @@
 import { pipe } from 'fp-ts/lib/function';
 import * as O from 'fp-ts/lib/Option';
-import * as T from 'fp-ts/lib/Task';
+import * as TA from 'fp-ts/lib/Task';
 import * as TE from 'fp-ts/lib/TaskEither';
 
 type Resource = {
   moduleId: string;
-  loader: T.Task<any>;
+  loader: TA.Task<any>;
   error: O.Option<unknown>;
   promise: O.Option<Promise<any>>;
   result: O.Option<any>;
@@ -33,7 +33,7 @@ const loadModule = (resource: Resource) =>
           })),
         ))();
 
-const createResource = (moduleId: string, loader: T.Task<any>): Resource => ({
+const createResource = (moduleId: string, loader: TA.Task<any>): Resource => ({
   moduleId,
   loader,
   error: O.none,
@@ -51,7 +51,7 @@ const getOrCacheResource = (
   resourceMap: ReadonlyMap<string | number, Resource>,
   resource: O.Option<Resource>,
   moduleId: string,
-  loader: T.Task<any>,
+  loader: TA.Task<any>,
 ): [Resource, ReadonlyMap<string | number, Resource>] =>
   O.isSome(resource)
     ? [resource.value, resourceMap]
@@ -63,10 +63,10 @@ const getOrCacheResource = (
         >,
       ];
 
-const createJSResource = ((): ((moduleId: string, loader: T.Task<any>) => JSResource) => {
+const createJSResource = ((): ((moduleId: string, loader: TA.Task<any>) => JSResource) => {
   let resourceMap: ReadonlyMap<string | number, Resource> = new Map();
 
-  return (moduleId: string, loader: T.Task<any>): JSResource => {
+  return (moduleId: string, loader: TA.Task<any>): JSResource => {
     // eslint-disable-next-line prefer-const
     let [resource, map] = getOrCacheResource(resourceMap, O.fromNullable(resourceMap.get(moduleId)), moduleId, loader);
 
@@ -88,11 +88,11 @@ const createJSResource = ((): ((moduleId: string, loader: T.Task<any>) => JSReso
         resourceMap = new Map([...map, [moduleId, resource]]);
 
         // eslint-disable-next-line no-nested-ternary
-        return O.isNone(resource.promise)
-          ? O.isSome(resource.result)
-            ? resource.result.value
-            : null
-          : resource.promise.value;
+        return O.isSome(resource.promise)
+          ? resource.promise.value
+          : O.isSome(resource.result)
+          ? resource.result.value
+          : undefined;
       },
     };
   };
