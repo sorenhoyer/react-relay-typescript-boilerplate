@@ -1,4 +1,3 @@
-// eslint-disable-next-line import/no-unresolved
 import type { EntryPoint } from 'react-relay/lib/relay-experimental/EntryPointTypes';
 import { EmptyObject } from './types';
 

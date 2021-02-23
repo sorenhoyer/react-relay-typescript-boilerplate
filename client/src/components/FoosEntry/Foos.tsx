@@ -1,5 +1,4 @@
 import React, { ReactElement } from 'react';
-// eslint-disable-next-line import/no-unresolved
 import { graphql, PreloadedQuery, usePreloadedQuery } from 'react-relay/hooks';
 import Link from '../../routing/Link';
 import { ComponentProps } from '../../types';

@@ -1,5 +1,4 @@
 import React, { ReactElement, ReactNode, Suspense } from 'react';
-// eslint-disable-next-line import/no-unresolved
 import { graphql, PreloadedQuery, usePreloadedQuery } from 'react-relay/hooks';
 import type { ComponentProps } from '../../types';
 import { RootQuery } from './__generated__/RootQuery.graphql';
