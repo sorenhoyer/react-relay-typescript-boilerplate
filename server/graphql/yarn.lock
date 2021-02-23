@@ -107,15 +107,15 @@
   resolved "https://registry.yarnpkg.com/@sindresorhus/is/-/is-0.14.0.tgz#9fb3a3cf3132328151f353de4632e01e52102bea"
   integrity sha512-9NET910DNaIPngYnLLPeg+Ogzqsi9uM4mSboU5y6p8S5DzMTVEsJZrawi+BoDNUVBa2DhJqQYUFvMDfgU062LQ==
 
-"@sorenhoyer/eslint-config-base@^1.1.1":
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/@sorenhoyer/eslint-config-base/-/eslint-config-base-1.1.1.tgz#d30e3293e05c44e8b9dcf228d595820e60175ffd"
-  integrity sha512-sDboSm0F3Rj7LWhhHGvRax9iMdTfOIjJLrNk601Ve6HjagLROD/74tQY+piG8oHCbUGe8hT6cHwf2v6K3nZXcQ==
+"@sorenhoyer/eslint-config-base@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@sorenhoyer/eslint-config-base/-/eslint-config-base-2.0.0.tgz#13b3d4d99f36435ee131fa508b44d07136ad4d0c"
+  integrity sha512-3rlF+3691SSm0yrwbONwbY8vaUh78FboojU/egzbyuM9jc0A0hGglMTEIWXshVtNdlFFJCmWVTfoESZnzZjNsg==
 
-"@sorenhoyer/prettier-config@^1.1.0":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@sorenhoyer/prettier-config/-/prettier-config-1.1.0.tgz#180a475e07074379f065e107b4c2f8c94fcab530"
-  integrity sha512-0p+5PPBaSqBGUAIwELCiAJb/3yHKnDaU57hFRswixwMSWvvN9u0x9rzqwW+mj0XT+BCyYXDO0gnsA7nHq7j4yQ==
+"@sorenhoyer/prettier-config@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@sorenhoyer/prettier-config/-/prettier-config-2.0.0.tgz#7f33eb9edb38ffc3e1a8ba1248a2af67e48890f6"
+  integrity sha512-A5LLDk8ouEfnUOW98T6RupquitpvQw7T+GpudjScsRwBGksXyOMrxRdbWbd7rPYNGYpNvygDlfIkvUJstFlZdg==
 
 "@szmarczak/http-timer@^1.1.2":
   version "1.1.2"

@@ -1111,20 +1111,20 @@
     schema-utils "^2.6.5"
     source-map "^0.7.3"
 
-"@sorenhoyer/eslint-config-react@^1.1.1":
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/@sorenhoyer/eslint-config-react/-/eslint-config-react-1.1.1.tgz#6c1a86a3ab961217a93f90be97afd2a9e0802f4b"
-  integrity sha512-8eqcOJdZ9lLdRw99E7ugHK8tMnh9pBgEU9N0h/ULMOh51NQu2VdYAJW7D+x+JiRh8zWUUZBeZz1p7pTkoRR0zQ==
+"@sorenhoyer/eslint-config-react@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@sorenhoyer/eslint-config-react/-/eslint-config-react-2.0.0.tgz#f5d7e4815cf254ecef1451934c494315ba99cdd3"
+  integrity sha512-R9C4xjEUrUiJ5HRgZKU42QS6P8JEAZuVZEM1MMK25zrL1y5tl1VKPMS9RE29uz/rFqbBQUQyo+EyC9GQZ99TVQ==
 
-"@sorenhoyer/eslint-config-relay@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@sorenhoyer/eslint-config-relay/-/eslint-config-relay-1.0.0.tgz#c3820c588ec38b09e64cea8141bef31cc5d81807"
-  integrity sha512-NwCQGr5Ngk2ij47zrNOxjSGn21wdKx1/tocDxpP58WIv0v/ajhJbXdodLKiP6TnOhMy26Pk7OTU62m8/Sdz3HQ==
+"@sorenhoyer/eslint-config-relay@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@sorenhoyer/eslint-config-relay/-/eslint-config-relay-2.0.0.tgz#e685d8b4d028d8fcf1d82a59062ce59137e48bef"
+  integrity sha512-2nD3Wej7igOl0LditOi1NN2iaa3v3LFYW1Vq6V8CInefzhJUFYW5C9jUyYy3auyn5mmuFsNa5J+m8oFFXmmQSw==
 
-"@sorenhoyer/prettier-config@^1.1.0":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@sorenhoyer/prettier-config/-/prettier-config-1.1.0.tgz#180a475e07074379f065e107b4c2f8c94fcab530"
-  integrity sha512-0p+5PPBaSqBGUAIwELCiAJb/3yHKnDaU57hFRswixwMSWvvN9u0x9rzqwW+mj0XT+BCyYXDO0gnsA7nHq7j4yQ==
+"@sorenhoyer/prettier-config@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@sorenhoyer/prettier-config/-/prettier-config-2.0.0.tgz#7f33eb9edb38ffc3e1a8ba1248a2af67e48890f6"
+  integrity sha512-A5LLDk8ouEfnUOW98T6RupquitpvQw7T+GpudjScsRwBGksXyOMrxRdbWbd7rPYNGYpNvygDlfIkvUJstFlZdg==
 
 "@types/anymatch@*":
   version "1.3.1"
@@ -5995,14 +5995,6 @@ scheduler@0.0.0-experimental-8af27aeed:
   version "0.0.0-experimental-8af27aeed"
   resolved "https://registry.yarnpkg.com/scheduler/-/scheduler-0.0.0-experimental-8af27aeed.tgz#39e38acd8517e7e35b70c163d6f8fd70ba7601cc"
   integrity sha512-DSAjFXBOiWLAYdOTWauawPkRI57OTWz5mCI3OleTJJRqPU7hHWp2q4oxL1QPt/eatrNU7gDgdWW5IM3UXYuBSQ==
-  dependencies:
-    loose-envify "^1.1.0"
-    object-assign "^4.1.1"
-
-scheduler@0.0.0-fec00a869:
-  version "0.0.0-fec00a869"
-  resolved "https://registry.yarnpkg.com/scheduler/-/scheduler-0.0.0-fec00a869.tgz#e28ff1aa107e1d04d6e8901641b4fb1e3ba98577"
-  integrity sha512-0U25jnyBP6dRPYwaVW4WMYB0jJSYlrIHFmIuXv27X+KIHJr7vyE9gcFTqZ61NQTuxYLYepAHnUs4KgQEUDlI+g==
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
