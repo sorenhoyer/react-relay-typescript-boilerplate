@@ -19,7 +19,7 @@ type Context = {
 
 app.use(
   '/graphql',
-  cors(),
+  (cors as any)(),
   graphqlHTTP((req, res) => {
     return {
       context: { startTime: Date.now(), req, res } as Context,
