@@ -4,8 +4,6 @@ const nullThrows: <T>(thing: T | null | undefined, message: string) => asserts t
   }
 };
 
-const toGlobalId = (type: string, id: string): string => {
-  return btoa([type, id].join(':'));
-};
+const toGlobalId = (type: string, id: string): string => btoa([type, id].join(':'));
 
 export { nullThrows, toGlobalId };

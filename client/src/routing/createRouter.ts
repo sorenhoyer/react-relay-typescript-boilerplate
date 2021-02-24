@@ -33,13 +33,12 @@ const environmentProvider = {
 /**
  * Load the data for the matched route, given the params extracted from the route
  */
-const prepareMatches = (matches: MatchedRoute<any>[]) => {
-  return matches.map(({ match, route }) => {
+const prepareMatches = (matches: MatchedRoute<any>[]) =>
+  matches.map(({ match, route }) => {
     const entryPoint = loadEntryPoint(environmentProvider, route.entryPoint, match.params);
 
     return { entryPoint, match };
   });
-};
 
 /**
  * A custom router built from the same primitives as react-router. Each object in `routes`

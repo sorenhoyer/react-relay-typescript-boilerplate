@@ -20,31 +20,27 @@ type Context = {
 app.use(
   '/graphql',
   (cors as any)(),
-  graphqlHTTP((req, res) => {
-    return {
-      context: { startTime: Date.now(), req, res } as Context,
-      customFormatErrorFn: (error) => ({
-        message: error.message,
-        locations: error.locations,
-        stack: error.stack ? error.stack.split('\n') : [],
-        path: error.path,
-      }),
-      extensions: ({
-        // document,
-        // variables,
-        // operationName,
-        // result,
-        context,
-      }) => {
-        return {
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          runTime: Date.now() - (context as Context).startTime,
-        };
-      },
-      graphiql: true,
-      schema,
-    };
-  }),
+  graphqlHTTP((req, res) => ({
+    context: { startTime: Date.now(), req, res } as Context,
+    customFormatErrorFn: (error) => ({
+      message: error.message,
+      locations: error.locations,
+      stack: error.stack ? error.stack.split('\n') : [],
+      path: error.path,
+    }),
+    extensions: ({
+      // document,
+      // variables,
+      // operationName,
+      // result,
+      context,
+    }) => ({
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      runTime: Date.now() - (context as Context).startTime,
+    }),
+    graphiql: true,
+    schema,
+  })),
 );
 
 app.listen(process.env.GRAPHQL_PORT, () => {
