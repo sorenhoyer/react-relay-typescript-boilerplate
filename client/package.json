@@ -53,7 +53,7 @@
     "@babel/preset-typescript": "^7.13.0",
     "@emotion/babel-preset-css-prop": "^10.0.27",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.4.3",
-    "@sorenhoyer/eslint-config-react": "^2.0.0",
+    "@sorenhoyer/eslint-config-react": "^2.0.2",
     "@sorenhoyer/eslint-config-relay": "^2.0.0",
     "@sorenhoyer/prettier-config": "^2.0.0",
     "@types/dotenv": "^8.2.0",
